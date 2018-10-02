@@ -7,6 +7,7 @@ import com.abcinvestmentbank.generalledger.service.EODPositionCalculatorService;
 import com.abcinvestmentbank.generalledger.service.PositionTransactionInputOutputService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,7 +15,7 @@ import java.io.File;
 import java.util.List;
 
 @SpringBootApplication
-public class GeneralledgerApplication {
+public class GeneralledgerApplication implements CommandLineRunner {
 
 
     @Autowired
@@ -31,7 +32,8 @@ public class GeneralledgerApplication {
 
     }
 
-    public void run() throws TransactionFileException {
+    @Override
+    public void run(String... args) throws TransactionFileException {
 
         //Step 1 : Read Start Day Positions from Source
         List<Position> positionsSODList = positionTransactionInputOutputService.readStartOfDayPositions(new File(
