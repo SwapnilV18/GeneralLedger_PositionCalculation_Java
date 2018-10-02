@@ -37,18 +37,18 @@ public class GeneralledgerApplication implements CommandLineRunner {
 
         //Step 1 : Read Start Day Positions from Source
         List<Position> positionsSODList = positionTransactionInputOutputService.readStartOfDayPositions(new File(
-                "src/Input_StartOfDay_Positions.txt"));
+                "input_output_location/Input_StartOfDay_Positions.txt"));
 
         //Step 2 : Read Transactions from Source
         List<Transaction> transactionList = positionTransactionInputOutputService.readTransactions(new File(
-                "src/1537277231233_Input_Transactions.txt"));
+                "input_output_location/1537277231233_Input_Transactions.txt"));
 
         //Step 3 : Process Transactions on Positions
         List<Position> positionEODList = EODPositionCalculatorService.calculatePositionsEOD(positionsSODList, transactionList);
 
         //Step 4 : output End of Day Positions with Delta to Destination file.
         positionTransactionInputOutputService.writePositionsEOD(positionEODList, new File(
-                "src/Expected_EndOfDay_Positions.txt"));
+                "input_output_location/Expected_EndOfDay_Positions.txt"));
 
     }
 }

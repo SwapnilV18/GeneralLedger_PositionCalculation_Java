@@ -46,7 +46,6 @@ public class EODPositionCalculatorServiceImpl implements EODPositionCalculatorSe
 
                 }
         );
-        log.info("" + positionSODMap);
         return positionList;
     }
 
@@ -73,7 +72,6 @@ public class EODPositionCalculatorServiceImpl implements EODPositionCalculatorSe
 
     @Override
     public void processBuyTransaction(Transaction transaction, Position position) {
-        log.info("inside buy transaction n");
         switch (position.getAccountType()) {
             case E:
                 position.setQuantity(position.getQuantity() + transaction.getTransactionQuantity());
@@ -90,7 +88,6 @@ public class EODPositionCalculatorServiceImpl implements EODPositionCalculatorSe
 
     @Override
     public void processSellTransaction(Transaction transaction, Position position) {
-        log.info("inside buy transaction " + transaction.getTransactionQuantity());
         switch (position.getAccountType()) {
             case E:
                 position.setQuantity(position.getQuantity() - transaction.getTransactionQuantity());
